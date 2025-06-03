@@ -42,7 +42,7 @@ jobs:
 
           VALIDATE_PYTHON_FLAKE8: false
 
-          DISABLE_ERRORS = true
+          DISABLE_ERRORS : true
 
           VALIDATE_GITLEAKS: false # for secrets detection
 
