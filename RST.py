@@ -7,8 +7,7 @@
 import ugame
 import stage
 
-
-
+import constants
 
 def game_scene():
     #this function is the main game scene
@@ -21,15 +20,13 @@ def game_scene():
 
     # set the background to image 0 in the image bank
     #  and the size (10x8 titles of size 16x16)
-    background = stage.Grid(image_bank_background, 10, 8)
+    background = stage.Grid(image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
-
-    ship = stage.Sprite(image_bank_sprites, 5, 75, 66)
-
+    ship = stage.Sprite(image_bank_sprites, 5, 75, constants.SCREEN_Y - (2 * constants. SPRITE_SIZE))
 
     #create a stage for the background to show up on
     #  and set the frame rate to 60fps
-    game = stage.Stage(ugame.display, 60)
+    game = stage.Stage(ugame.display, constants.FPS)
     # set the layers, items show up in folder
     game.layers = [ship] + [background]
     # render the background and initial location of sprite list
@@ -43,22 +40,37 @@ def game_scene():
 
 
         if keys & ugame.K_X:
-            print("A")
+            pass
         if keys & ugame.K_O:
-            print("B")
+            pass
         if keys & ugame.K_START:
-            print("Start")
+            pass
         if keys & ugame.K_SELECT:
-            print("Select")
+            pass
         if keys & ugame.K_RIGHT:
-            ship.move(ship.x + 1, ship.y)
+            if ship.x <= constants.SCREEN_X - constants.SPRITE_SIZE:
+                ship.move(ship.x + 1, ship.y)
+            else:
+                ship.move(constants.SCREEN_X - constants.SPRITE_SIZE, ship.y)
+                
         if keys & ugame.K_LEFT:
-            ship.move(ship.x - 1, ship.y)
+            if ship.x >= 0:
+                ship.move(ship.x - 1, ship.y)
+            else:
+                ship.move(0, ship.y)
+                
         if keys & ugame.K_UP:
-            ship.move(ship.x, ship.y - 1)
+            if ship.y <= constants.SCREEN_Y - constants.SPRITE_SIZE:
+                ship.move(ship.x, ship.y - 1)
+            else:
+                ship.move(ship.x ,constants.SCREEN_Y - constants.SPRITE_SIZE)
         if keys & ugame.K_DOWN:
-            ship.move(ship.x, ship.y + 1)
+            if ship.x <= constants.SCREEN_X - constants.SPRITE_SIZE:
+                ship.move(ship.x, ship.y + 1)
+            else:
+                ship.move(ship.x ,constants.SCREEN_X - constants.SPRITE_SIZE)
 
+        # update game Logic
 
         #update game logic
 
@@ -66,7 +78,7 @@ def game_scene():
         game.render_block()
         game.render_sprites([ship])
         game.tick()
-   
+    
 if __name__ == "__main__":
     game_scene()
-
+    
