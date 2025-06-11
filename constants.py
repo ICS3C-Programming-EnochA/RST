@@ -2,8 +2,10 @@
 # Created by: Enoch Amedjrovi
 # Created on: March 2, 2025
 # This constants file is for Space Alien game
-
 # CircuitPython screen size is 160x128 and sprites are 16x16
+
+import stage
+
 SCREEN_X = 160
 SCREEN_Y = 128
 SCREEN_GRID_X = 16
@@ -33,3 +35,6 @@ button_state = {
     "button_still_pressed": "still pressed",
     "button_released": "released",
 }
+# new pallet for red filled text
+RED_PALETTE = (b'\x00\x00\x00\x22\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+               b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
